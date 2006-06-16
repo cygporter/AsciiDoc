@@ -1,0 +1,44 @@
+DESCRIPTION="Text-based document generation tools"
+HOMEPAGE="http://www.methods.co.nz/asciidoc/"
+SRC_URI="http://www.methods.co.nz/${PN}/${P}.tar.gz"
+
+src_compile() {
+	:
+}
+
+src_test() {
+	:
+}
+
+src_install() {
+	cd ${S}
+	dobin a2x
+	newbin asciidoc.py asciidoc
+
+	doman doc/*.1
+
+	insinto /etc/asciidoc
+	doins *.conf
+
+	dodir /usr/share/asciidoc
+	cp -r doc docbook-xsl examples filters images javascripts stylesheets \
+		${D}/usr/share/asciidoc
+
+
+	cd ${D}/usr/share/asciidoc
+
+	dodir /etc/asciidoc/docbook-xsl
+	mv docbook-xsl/*.xsl ${D}/etc/asciidoc/docbook-xsl
+
+	dodir /etc/asciidoc/filters
+	mv filters/code-filter.* ${D}/etc/asciidoc/filters
+
+	dodir /etc/asciidoc/javascripts
+	cp javascripts/*.js ${D}/etc/asciidoc/javascripts
+
+	dodir /etc/asciidoc/stylesheets
+	cp stylesheets/*.css ${D}/etc/asciidoc/stylesheets
+
+	dodir /etc/asciidoc/images/icons
+	cp -r images/icons/* ${D}/etc/asciidoc/images/icons
+}
