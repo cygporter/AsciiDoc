@@ -12,6 +12,8 @@ REQUIRES="dblatex docbook-xsl libxslt w3m xmlto"
 HOMEPAGE="http://www.methods.co.nz/asciidoc/"
 SRC_URI="mirror://sourceforge/asciidoc/${NAME}-${VERSION}.tar.gz"
 
+ARCH=noarch
+
 src_compile() {
 	lndirs
 	cd ${B}
