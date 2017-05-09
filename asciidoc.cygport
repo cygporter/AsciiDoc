@@ -1,7 +1,7 @@
 inherit python
 
 NAME="asciidoc"
-VERSION=8.6.8
+VERSION=8.6.9
 RELEASE=1
 CATEGORY="Text Doc"
 SUMMARY="Text-based document generation tool"
