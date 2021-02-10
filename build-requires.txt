@@ -1,0 +1,9 @@
+cygport
+dblatex
+docbook-xml45
+docbook-xsl
+gettext-devel
+libxml2
+libxslt
+python3-devel
+w3m

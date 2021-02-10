@@ -1,27 +1,28 @@
-inherit python
+inherit python3
 
-NAME="asciidoc"
-VERSION=8.6.9
-RELEASE=1
-CATEGORY="Text Doc"
-SUMMARY="Text-based document generation tool"
-DESCRIPTION="AsciiDoc is a text document format for writing short documents,
-articles, books and UNIX man pages. AsciiDoc files can be translated to HTML
-and DocBook markups using the asciidoc(1) command."
-REQUIRES="dblatex docbook-xsl libxslt w3m xmlto"
-HOMEPAGE="http://www.methods.co.nz/asciidoc/"
-SRC_URI="mirror://sourceforge/asciidoc/${NAME}-${VERSION}.tar.gz"
+NAME='asciidoc'
+VERSION='9.0.5'
+RELEASE='1'
+CATEGORY='Text Doc'
+SUMMARY='Text-based document generation'
+DESCRIPTION='AsciiDoc is a text document format for writing notes,
+documentation, articles, books, ebooks, slideshows, web pages, man pages and
+blogs. AsciiDoc files can be translated to many formats including HTML, PDF,
+EPUB, man page.'
+HOMEPAGE='https://asciidoc.org/'
+SRC_URI="https://github.com/asciidoc/asciidoc-py3/archive/${VERSION}.tar.gz
+	 build-requires.txt"
+SRC_DIR="asciidoc-py3-${PV}"
 
-ARCH=noarch
+ARCH='noarch'
+BUILD_REQUIRES="$(tr '\n' ' ' <build-requires.txt)"
+REQUIRES='dblatex docbook-xsl libxslt python3 w3m'
 
 src_compile() {
+	cd "${S}"
+	cygautoreconf
 	lndirs
-	cd ${B}
+	cd "${B}"
 	cygconf
 	cygmake
-}
-
-src_install() {
-	cd ${B}
-	cyginstall -j1
 }
