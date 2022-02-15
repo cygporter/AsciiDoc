@@ -5,5 +5,6 @@ docbook-xsl
 gettext-devel
 libxml2
 libxslt
-python3-devel
+python39-devel
+python39-pytest
 w3m
