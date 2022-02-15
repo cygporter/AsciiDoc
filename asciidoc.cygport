@@ -1,4 +1,4 @@
-inherit python3
+inherit python3-wheel
 
 NAME='asciidoc'
 VERSION='10.1.1'
@@ -17,15 +17,6 @@ SRC_DIR="asciidoc-py-${PV}"
 ARCH='noarch'
 BUILD_REQUIRES="$(tr '\n' ' ' <build-requires.txt)"
 REQUIRES='dblatex docbook-xsl libxslt python3 w3m'
-
-src_compile() {
-	cd "${S}"
-	cygautoreconf
-	lndirs
-	cd "${B}"
-	cygconf
-	cygmake
-}
 
 src_test() {
 	cd "${B}"
