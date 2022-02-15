@@ -19,6 +19,9 @@ BUILD_REQUIRES="$(tr '\n' ' ' <build-requires.txt)"
 REQUIRES='dblatex docbook-xsl libxslt python3 w3m'
 
 src_test() {
+	lndirs
 	cd "${B}"
-	make -k test
+	python3 -m asciidoc.asciidoc --doctest
+	python3 -m pytest
+	python3 tests/testasciidoc.py run
 }
