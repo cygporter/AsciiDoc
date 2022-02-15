@@ -58,7 +58,7 @@ jobs:
         run: cygport asciidoc.cygport package
         timeout-minutes: 5
       - name: Configure SSH
-        if: startsWith(github.ref, 'refs/tags/v')
+        if: github.ref == 'refs/branches/main'
         env:
           MAINTAINER_KEY: ${{ secrets.MAINTAINER_KEY }}
         run: |
@@ -68,11 +68,11 @@ jobs:
           echo 'cygwin.com,8.43.85.97 ecdsa-sha2-nistp256 AAAAE2VjZHNhLXNoYTItbmlzdHAyNTYAAAAIbmlzdHAyNTYAAABBBGqrxexIuyqmCVe33p1HuhUFzsXte5QZKb+BJlsRrvXOpUOJEW2S0kszyAiymeV7AXaYmHDKVRJpGVR+0ua0Xww=' >~/.ssh/known_hosts
         timeout-minutes: 1
       - name: Cygport upload
-        if: startsWith(github.ref, 'refs/tags/v')
+        if: github.ref == 'refs/branches/main'
         run: SSH_KEY=~/.ssh/id_rsa cygport asciidoc.cygport stage
         timeout-minutes: 5
       - name: Mirror to Cygwin Git repositories
-        if: startsWith(github.ref, 'refs/tags/v')
+        if: github.ref == 'refs/branches/main'
         run: git push cygwin@cygwin.com:/git/cygwin-packages/asciidoc '${{ github.ref }}'
         timeout-minutes: 5
       - name: Tar up build results
