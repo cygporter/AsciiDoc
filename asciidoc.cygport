@@ -1,7 +1,7 @@
 inherit python3
 
 NAME='asciidoc'
-VERSION='9.0.5'
+VERSION='10.1.1'
 RELEASE='1'
 CATEGORY='Text Doc'
 SUMMARY='Text-based document generation'
@@ -10,9 +10,9 @@ documentation, articles, books, ebooks, slideshows, web pages, man pages and
 blogs. AsciiDoc files can be translated to many formats including HTML, PDF,
 EPUB, man page.'
 HOMEPAGE='https://asciidoc.org/'
-SRC_URI="https://github.com/asciidoc/asciidoc-py3/archive/${VERSION}.tar.gz
+SRC_URI="https://github.com/asciidoc/asciidoc-py/archive/${VERSION}.tar.gz
 	 build-requires.txt"
-SRC_DIR="asciidoc-py3-${PV}"
+SRC_DIR="asciidoc-py-${PV}"
 
 ARCH='noarch'
 BUILD_REQUIRES="$(tr '\n' ' ' <build-requires.txt)"
