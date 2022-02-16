@@ -16,6 +16,8 @@ jobs:
         timeout-minutes: 10
       - name: Checkout
         uses: actions/checkout@v2
+        with:
+          fetch-depth: 0
         timeout-minutes: 1
       - name: Load packages to install
         id: cyg-package-list
