@@ -70,10 +70,6 @@ jobs:
           echo "$MAINTAINER_KEY" >~/.ssh/id_rsa
           echo 'cygwin.com,8.43.85.97 ecdsa-sha2-nistp256 AAAAE2VjZHNhLXNoYTItbmlzdHAyNTYAAAAIbmlzdHAyNTYAAABBBGqrxexIuyqmCVe33p1HuhUFzsXte5QZKb+BJlsRrvXOpUOJEW2S0kszyAiymeV7AXaYmHDKVRJpGVR+0ua0Xww=' >~/.ssh/known_hosts
         timeout-minutes: 1
-      - name: Cygport upload
-        if: github.ref == 'refs/heads/main'
-        run: SSH_KEY=~/.ssh/id_rsa cygport asciidoc.cygport upload
-        timeout-minutes: 5
       - name: Compute release name
         if: github.ref == 'refs/heads/main'
         id: release-name
@@ -92,6 +88,10 @@ jobs:
           tag_name: ${{ steps.release-name.outputs.release }}
           files: asciidoc-*/dist/asciidoc/*
           target_commitish: ${{ github.ref }}
+      - name: Cygport upload
+        if: github.ref == 'refs/heads/main'
+        run: SSH_KEY=~/.ssh/id_rsa cygport asciidoc.cygport upload
+        timeout-minutes: 5
       - name: Tar up build results
         if: always()
         run: tar -caf asciidoc.txz asciidoc-*-*.*/
