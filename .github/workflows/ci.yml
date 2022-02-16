@@ -77,10 +77,6 @@ jobs:
           eval $(grep -e '^VERSION=' -e '^RELEASE=' asciidoc.cygport)
           printf '::set-output name=release::v%s-%s' "$VERSION" "$RELEASE"
         timeout-minutes: 1
-      - name: Mirror to Cygwin Git repositories
-        if: github.ref == 'refs/heads/main'
-        run: git push cygwin@cygwin.com:/git/cygwin-packages/asciidoc '${{ steps.release-name.outputs.release }}'
-        timeout-minutes: 5
       - name: Create a GitHub release
         if: github.ref == 'refs/heads/main'
         uses: softprops/action-gh-release@v1
@@ -88,6 +84,10 @@ jobs:
           tag_name: ${{ steps.release-name.outputs.release }}
           files: asciidoc-*/dist/asciidoc/*
           target_commitish: ${{ github.ref }}
+      - name: Mirror to Cygwin Git repositories
+        if: github.ref == 'refs/heads/main'
+        run: git push cygwin@cygwin.com:/git/cygwin-packages/asciidoc '${{ steps.release-name.outputs.release }}'
+        timeout-minutes: 5
       - name: Cygport upload
         if: github.ref == 'refs/heads/main'
         run: SSH_KEY=~/.ssh/id_rsa cygport asciidoc.cygport upload
