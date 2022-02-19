@@ -50,9 +50,6 @@ jobs:
       - name: Cygport compile
         run: cygport asciidoc.cygport compile
         timeout-minutes: 5
-      - name: Install pytest-mock
-        run: python3 -m pip install pytest-mock
-        timeout-minutes: 5
       - name: Cygport test
         run: cygport asciidoc.cygport test
         timeout-minutes: 5

@@ -6,6 +6,6 @@ gettext-devel
 libxml2
 libxslt
 python39-devel
-python39-pytest
+python39-pytest-mock
 python39-wheel
 w3m
