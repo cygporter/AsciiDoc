@@ -1,7 +1,7 @@
 inherit python3-wheel
 
 NAME='asciidoc'
-VERSION='10.1.1'
+VERSION='10.1.2'
 RELEASE='1'
 CATEGORY='Text Doc'
 SUMMARY='Text-based document generation'
