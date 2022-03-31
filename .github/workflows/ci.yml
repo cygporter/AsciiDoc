@@ -10,7 +10,7 @@ jobs:
       PATH: C:\cygwin\bin
     steps:
       - name: Install Cygwin Git
-        uses: cygwin/cygwin-install-action@ad81540ad7c2726e17c08401fbeca6380cc7f463
+        uses: cygwin/cygwin-install-action@v2
         with:
           packages: git
         timeout-minutes: 10
@@ -26,7 +26,7 @@ jobs:
           tr '\n' ' ' <build-requires.txt
         timeout-minutes: 1
       - name: Install Cygwin build requirements
-        uses: cygwin/cygwin-install-action@ad81540ad7c2726e17c08401fbeca6380cc7f463
+        uses: cygwin/cygwin-install-action@v2
         with:
           packages: ${{ steps.cyg-package-list.outputs.packages }}
         timeout-minutes: 30
