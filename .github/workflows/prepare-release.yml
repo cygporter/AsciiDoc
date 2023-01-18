@@ -12,6 +12,18 @@ on:
         required: false
         default: false
         type: boolean
+  workflow_call:
+    inputs:
+      release_tag:
+        description: Name for the release tag
+        required: false
+        default: ''
+        type: string
+      publish:
+        description: Whether to publish the release
+        required: false
+        default: false
+        type: boolean
 permissions:
   contents: write
 jobs:
@@ -21,3 +33,4 @@ jobs:
       cygport_file: asciidoc.cygport
       release_tag: ${{ inputs.release_tag }}
       publish: ${{ inputs.publish }}
+      bootstrap_packages: cygport python3
