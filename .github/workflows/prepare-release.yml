@@ -1,0 +1,36 @@
+name: Prepare release
+on:
+  workflow_dispatch:
+    inputs:
+      release_tag:
+        description: Name for the release tag
+        required: false
+        default: ''
+        type: string
+      publish:
+        description: Whether to publish the release
+        required: false
+        default: false
+        type: boolean
+  workflow_call:
+    inputs:
+      release_tag:
+        description: Name for the release tag
+        required: false
+        default: ''
+        type: string
+      publish:
+        description: Whether to publish the release
+        required: false
+        default: false
+        type: boolean
+permissions:
+  contents: write
+jobs:
+  prep-release:
+    uses: cygporter/workflows/.github/workflows/prep-release.yml@v1
+    with:
+      cygport_file: asciidoc.cygport
+      release_tag: ${{ inputs.release_tag }}
+      publish: ${{ inputs.publish }}
+      bootstrap_packages: cygport python3

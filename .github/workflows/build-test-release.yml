@@ -1,0 +1,23 @@
+name: Build, test, release
+on: [push, pull_request]
+jobs:
+  build-test:
+    uses: ./.github/workflows/build.yml
+
+  prep-release:
+    if: github.ref == format('refs/heads/v{0}', needs.build-test.outputs.pv)
+    needs: build-test
+    permissions:
+      contents: write
+    uses: ./.github/workflows/prepare-release.yml
+    with:
+      publish: true
+
+  release:
+    if: github.ref == format('refs/heads/v{0}', needs.build-test.outputs.pv)
+    needs: [build-test, prep-release]
+    uses: ./.github/workflows/release.yml
+    with:
+      release_tag: ${{ needs.prep-release.outputs.release_tag }}
+    secrets:
+      maintainer_key: ${{ secrets.maintainer_key }}

@@ -6,8 +6,8 @@ The canonical version of this repository is [on GitHub][GitHub repo].  Releases 
 Please [contact the Cygwin mailing list][Cygwin lists] in the first instance
 with any issues / questions / thoughts / &c.
 
-[AsciiDoc]: https://asciidoc.org/
+[AsciiDoc]: https://asciidoc-py.github.io/
 [Cygwin]: https://www.cygwin.com/
 [Cygwin lists]: https://cygwin.com/lists.html
-[GitHub repo]: https://github.com/me-and/Cygwin-AsciiDoc
+[GitHub repo]: https://github.com/cygporter/AsciiDoc
 [Cygwin repo]: https://cygwin.com/git-cygwin-packages/?p=git/cygwin-packages/asciidoc.git

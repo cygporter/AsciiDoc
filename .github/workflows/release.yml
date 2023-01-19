@@ -1,0 +1,28 @@
+name: Release
+on:
+  workflow_dispatch:
+    inputs:
+      release_tag:
+        description: Name of the release tag
+        required: true
+        type: string
+  workflow_call:
+    inputs:
+      release_tag:
+        description: Name of the release tag
+        required: true
+        type: string
+    secrets:
+      maintainer_key:
+        description: RSA private key for uploading to Cygwin servers in OpenSSH format
+        required: true
+
+jobs:
+  release:
+    uses: cygporter/workflows/.github/workflows/release.yml@v1
+    with:
+      cygport_file: asciidoc.cygport
+      tag_name: ${{ inputs.release_tag }}
+      bootstrap_packages: cygport python3
+    secrets:
+      maintainer_key: ${{ secrets.maintainer_key }}

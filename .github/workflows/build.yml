@@ -1,0 +1,10 @@
+name: Build
+on:
+  - workflow_dispatch
+  - workflow_call
+jobs:
+  build-test:
+    uses: cygporter/workflows/.github/workflows/build-test.yml@v1
+    with:
+      cygport_file: asciidoc.cygport
+      bootstrap_packages: cygport python3
