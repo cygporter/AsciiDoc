@@ -1,4 +1,5 @@
 name: Prepare release
+
 on:
   workflow_dispatch:
     inputs:
@@ -12,6 +13,7 @@ on:
         required: false
         default: false
         type: boolean
+
   workflow_call:
     inputs:
       release_tag:
@@ -24,8 +26,14 @@ on:
         required: false
         default: false
         type: boolean
+    outputs:
+      release_tag:
+        description: Name of the release tag
+        value: ${{ jobs.prep-release.outputs.tag }}
+
 permissions:
   contents: write
+
 jobs:
   prep-release:
     uses: cygporter/workflows/.github/workflows/prep-release.yml@v1
