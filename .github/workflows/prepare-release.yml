@@ -36,7 +36,7 @@ permissions:
 
 jobs:
   prep-release:
-    uses: cygporter/workflows/.github/workflows/prep-release.yml@f1e82b1b682c421b3f2686f5b31d45230a8539ca
+    uses: cygporter/workflows/.github/workflows/prep-release.yml@v1
     with:
       cygport_file: asciidoc.cygport
       release_tag: ${{ inputs.release_tag }}
